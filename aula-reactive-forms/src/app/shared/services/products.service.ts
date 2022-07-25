@@ -49,5 +49,15 @@ export class ProductsService {
 
   getById(id: number) {
     return this.products.find((product) => product.id === id);
+   
+  }
+  create(product: Product){
+    product.id = this.generationNextId();
+    product.disponivel =true;
+this.products.push(product);
+  }
+
+  generationNextId(){
+    return this.products[this.products.length - 1].id + 1;
   }
 }

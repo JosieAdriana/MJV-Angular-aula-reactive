@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductsService } from 'src/app/shared/services/products.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   templateUrl: './create-products-page.component.html',
@@ -17,7 +19,8 @@ imagemProduto: new FormControl('')
 });
 
   constructor(
-    private router: Router) { }
+    private router: Router,
+    private productsService: ProductsService ) { }
 
   ngOnInit(): void {
     this.formProduto.controls['imagemProduto'].disable();
@@ -25,7 +28,9 @@ imagemProduto: new FormControl('')
   }
 
   onSubmit() {
-    console.log(this.formProduto)
+   const formValue = this.formProduto.value;
+
+   this.productsService.create(formValue);
   }
 
 }
