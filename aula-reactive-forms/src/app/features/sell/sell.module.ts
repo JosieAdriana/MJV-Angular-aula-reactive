@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SellPageComponent } from './pages/sell-page/sell-page.component';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
 import { CreateProductPageComponent } from './pages/create-products/create-products-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { CreateProductPageComponent } from './pages/create-products/create-produ
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProductsComponent
