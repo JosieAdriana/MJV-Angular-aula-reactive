@@ -13,15 +13,18 @@
         <div class="form-field">
             <label class="label-input">Valor do produto:</label>
             <input type="number" formControlName="valorProduto" placeholder="Digite o valor do produto">
-            <span class="error">
-                O valor da do produto deve estar entre 100 e 1500*</span>
+            <span class="error" *ngIf="formProduto.value.valorProduto > 0 &&
+             formProduto.controls.valorProduto.errors && 
+             formProduto.controls.valorProduto.errors.min">
+                O valor da do produto deve estar acima de R$ 50,00*</span>
         </div>
         <div class="form-field">
             <label class="label-input">Imagem do produto:</label>
             <input type="text" formControlName="imagemProduto" placeholder="Digite a url">
         </div>
         <div class="action-form">
-            <button class="cadastrarProduto" type="submit" (click)="onSubmit()">Salvar</button>
+            <button class="cadastrarProduto" type="submit" (click)="onSubmit()"
+            [disabled]="formProduto.invalid">Salvar</button>
         </div>
     </form>
 </div>

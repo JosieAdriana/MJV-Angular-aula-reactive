@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 export class CreateProductPageComponent implements OnInit {
 
 formProduto = new FormGroup({
-descricao: new FormControl(''),
-quantidade: new FormControl(1),
-valorProduto: new FormControl(0),
+descricao: new FormControl('', [Validators.required]),
+quantidade: new FormControl(1, [Validators.required]),
+valorProduto: new FormControl(0, [Validators.required, Validators.min(50)]),
 imagemProduto: new FormControl('')
 
 });
@@ -20,9 +20,12 @@ imagemProduto: new FormControl('')
     private router: Router) { }
 
   ngOnInit(): void {
+    this.formProduto.controls['imagemProduto'].disable();
+    this.formProduto.controls['imagemProduto'].setValue('https://www.meioemensagem.com.br/wp-content/uploads/2020/12/pospandemia-cred-istock.jpg')
   }
 
   onSubmit() {
+    console.log(this.formProduto)
   }
 
 }
